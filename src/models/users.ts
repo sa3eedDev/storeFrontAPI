@@ -22,6 +22,17 @@ export class usersClass {
             throw new Error("Cannot Index users")
         }
     }
+    async show(id: number): Promise<user>{
+        try {
+            const sql = 'SELECT * FROM users WHERE id=($1)'
+            const conn = await client.connect()
+            const results = await conn.query(sql, [id])
+            conn.release()
+            return results.rows[0]
+        } catch (error) {
+            throw new Error (`An error happened during searching for a user ${error}`)
+        }
+    }
     async create(user: user): Promise<user>{
         try {
             const pepper = process.env.SALT

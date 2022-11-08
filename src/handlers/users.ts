@@ -26,3 +26,13 @@ export async function indexUsers(req: Request, res: Response, next: NextFunction
         next(error)
     }
 }
+
+export async function showUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const results = await users.show(+req.params.id)
+        res.json(results)
+    } catch (error) {
+        next(error)
+    }
+    
+}
