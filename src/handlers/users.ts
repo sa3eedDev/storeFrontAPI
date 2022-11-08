@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { user, usersClass } from "../models/users";
 import jsonwebtoken from "jsonwebtoken";
-import dotenv from 'dotenv';
 
 const users = new usersClass();
 
