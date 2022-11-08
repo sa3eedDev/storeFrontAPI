@@ -46,9 +46,33 @@ var bcrypt_1 = __importDefault(require("bcrypt"));
 var usersClass = /** @class */ (function () {
     function usersClass() {
     }
+    usersClass.prototype.index = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var sql, conn, results, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        sql = 'SELECT * from users';
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, conn.query(sql)];
+                    case 2:
+                        results = _a.sent();
+                        conn.release();
+                        return [2 /*return*/, results.rows];
+                    case 3:
+                        error_1 = _a.sent();
+                        throw new Error("Cannot Index users");
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     usersClass.prototype.create = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var pepper, rounds, hash, values, sql, conn, results, error_1;
+            var pepper, rounds, hash, values, sql, conn, results, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -67,8 +91,8 @@ var usersClass = /** @class */ (function () {
                         conn.release();
                         return [2 /*return*/, results.rows[0]];
                     case 3:
-                        error_1 = _a.sent();
-                        throw new Error("An error happened during creating a user ".concat(error_1));
+                        error_2 = _a.sent();
+                        throw new Error("An error happened during creating a user ".concat(error_2));
                     case 4: return [2 /*return*/];
                 }
             });

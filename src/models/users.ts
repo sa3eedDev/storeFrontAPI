@@ -1,7 +1,6 @@
 // @ts-ignore
 import client from "../database";
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
 
 
 export type user = {
@@ -12,6 +11,17 @@ export type user = {
 }
 
 export class usersClass {
+    async index(): Promise<user[]>{
+        try {
+            const sql = 'SELECT * from users'
+            const conn = await client.connect()
+            const results = await conn.query(sql)
+            conn.release()
+            return results.rows
+        } catch (error) {
+            throw new Error("Cannot Index users")
+        }
+    }
     async create(user: user): Promise<user>{
         try {
             const pepper = process.env.SALT

@@ -1,12 +1,12 @@
 import express from 'express'
-import { createUser } from '../handlers/users';
+import { createUser, indexUsers } from '../handlers/users';
+import { verifyAuthToken } from '../middlewares/validetor';
 
 
 const usersRoutes = (app: express.Application) =>{
-    app.get('/users', (_req,res) =>{
-        res.send("users api")
-    })
+
     app.post("/users", createUser)
+    app.get("/users", verifyAuthToken, indexUsers)
 }
 
 export default usersRoutes;
