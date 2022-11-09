@@ -1,9 +1,8 @@
 import express from 'express';
+import { createOrder } from '../handlers/orders';
 
 const ordersRoutes = (app: express.Application) =>{
-    app.get('/orders', (_req,res) =>{
-        res.send('orders API')
-    })
+    app.post('/orders', createOrder)
 }
 
 export default ordersRoutes;
