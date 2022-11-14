@@ -13,3 +13,12 @@ export async function createOrder(req: Request, res: Response, next: NextFunctio
         next(error)
     }
 }
+export async function showOrder(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const id = +req.params.id
+        const results = await orderC.show(id)
+        res.json(results)
+    } catch (error) {
+        next(error)
+    }
+}

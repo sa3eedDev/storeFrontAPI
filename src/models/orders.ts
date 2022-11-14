@@ -34,10 +34,23 @@ export class orderClass{
                 console.log(results.rows[0])
                 order.products.push(results.rows[0])
             }
+            conn.release()
             return order;
 
         } catch (error) {
             throw new Error("An Error happened during creating an order")
+        }
+    }
+    async show(id: number): Promise<order>{
+        try {
+            const sql = "SELECT * FROM orders WHERE id=($1)"
+            const conn = await client.connect()
+            const results = await conn.query(sql, [id])
+            conn.release()
+
+            return results.rows[0]
+        } catch (error) {
+            throw new Error("An error happened during showing user order")
         }
     }
 }

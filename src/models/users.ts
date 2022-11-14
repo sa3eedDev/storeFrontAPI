@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 
 export type user = {
-    id: number
+    id: number | undefined
     firstname: string
     lastname: string
     password: string
