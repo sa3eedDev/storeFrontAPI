@@ -2,14 +2,14 @@ import client from "../database";
 import { product } from "./products";
 
 export type order_product = {
-    id: number 
+    id: number | undefined
     product_id: number
-    order_id: number
+    order_id: number | undefined
     quantity: number
 }
 
 export type order = {
-    id: number,
+    id: number | undefined,
     products: order_product[]
     active: boolean
     user_id : number
@@ -41,14 +41,14 @@ export class orderClass{
             throw new Error("An Error happened during creating an order")
         }
     }
-    async show(id: number): Promise<order>{
+    async show(id: number): Promise<order[]>{
         try {
             const sql = "SELECT * FROM orders WHERE id=($1)"
             const conn = await client.connect()
             const results = await conn.query(sql, [id])
             conn.release()
 
-            return results.rows[0]
+            return results.rows
         } catch (error) {
             throw new Error("An error happened during showing user order")
         }

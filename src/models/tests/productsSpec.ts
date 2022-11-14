@@ -17,6 +17,26 @@ describe("testing if Product models are defind", ()=>{
 describe("test product models functions", ()=>{
     it("test product index",async () => {
         const results = await products.index()
-        expect(results).toEqual([])
+        expect(results.length).toBeGreaterThanOrEqual(0)
+    })
+    it("test product creation", async ()=>{
+        const results = await products.create({
+            id: undefined,
+            name: "Test product",
+            price: "300"
+        })
+        expect(results).toEqual({
+            id: 1,
+            name: "Test product",
+            price: "$300.00"
+        })
+    })
+    it("test product show", async ()=>{
+        const results = await products.show(1)
+        expect(results).toEqual({
+            id: 1,
+            name: "Test product",
+            price: "$300.00"
+        })
     })
 })

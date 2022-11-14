@@ -17,7 +17,7 @@ describe("testing if User models are defind", ()=>{
 describe("testing models functions", ()=>{
     it("test index users", async ()=>{
         const results = await users.index()
-        expect(results).toEqual([])
+        expect(results.length).toBeGreaterThanOrEqual(0)
     })
 
     it("check create user", async()=>{
@@ -36,12 +36,12 @@ describe("testing models functions", ()=>{
         expect({
             id: results.id, 
             firstname: results.firstname,
-             lastname: results.lastname
+            lastname: results.lastname
             }).toEqual({
                 id: 1,
-                 firstname: "test",
-                  lastname: "last"
-                })
+                firstname: "test",
+                lastname: "last"
+            })
     })
 
 })
