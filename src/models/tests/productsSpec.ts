@@ -25,8 +25,7 @@ describe("test product models functions", ()=>{
             name: "Test product",
             price: "300"
         })
-        expect(results).toEqual({
-            id: 1,
+        expect({name: results.name, price: results.price}).toEqual({
             name: "Test product",
             price: "$300.00"
         })

@@ -35,7 +35,7 @@ describe("test order model functions", ()=>{
             products: [
                 {
                     id: undefined,
-                    product_id: 3,
+                    product_id: 1,
                     order_id: undefined,
                     quantity: 3
                 },
@@ -46,12 +46,30 @@ describe("test order model functions", ()=>{
                     quantity: 5
                 }
             ],
-            active: true,
+            state_of_order: true,
             user_id: 1,
             id: undefined
         }
+        const orderExpect: order=  {
+            products: [
+                {
+                    id: 1,
+                    product_id: "1",
+                    order_id: "1",
+                    quantity: 3
+                },
+                {
+                    id: 2,
+                    product_id: "1",
+                    order_id: "1",
+                    quantity: 5
+                }
+            ],
+            state_of_order: true,
+            user_id: "1",
+            id: 1
+        }
         const results = await orders.create(orderTest)
-        //@ts-ignores
-        expect(results).toBeInstanceOf(order)
+        expect(results).toEqual(orderExpect)
     })
 })
