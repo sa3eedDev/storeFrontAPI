@@ -19,6 +19,7 @@ export async function showOrder(req: Request, res: Response, next: NextFunction)
         const results = await orderC.show(id)
         res.json(results)
     } catch (error) {
+        res.status(411)
         next(error)
     }
 }

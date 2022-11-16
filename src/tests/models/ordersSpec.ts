@@ -1,6 +1,6 @@
-import { order, orderClass } from "../orders";
-import { user, usersClass } from "../users";
-import { productClass } from "../products";
+import { order, orderClass } from "../../models/orders";
+import { user, usersClass } from "../../models/users";
+import { productClass } from "../../models/products";
 
 const orders = new orderClass()
 const users = new usersClass()

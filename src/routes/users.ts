@@ -1,13 +1,13 @@
-import express from 'express'
+import { Router } from 'express';
 import { createUser, indexUsers, showUser } from '../handlers/users';
 import { verifyAuthToken } from '../middlewares/validetor';
 
+const usersRoutes = Router()
 
-const usersRoutes = (app: express.Application) =>{
 
-    app.post("/users", createUser)
-    app.get("/users", verifyAuthToken, indexUsers)
-    app.get("/users/:id", verifyAuthToken, showUser)
-}
+usersRoutes.post("/", createUser)
+usersRoutes.get("/", verifyAuthToken, indexUsers)
+usersRoutes.get("/:id", verifyAuthToken, showUser)
+
 
 export default usersRoutes;
