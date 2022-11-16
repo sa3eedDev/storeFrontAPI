@@ -16,18 +16,18 @@ describe("testing products endpoints", ()=>{
     })
     it("test products index", (done)=>{
 
-        request.get('/products').expect(200,done)
+        request.get('/products').expect(200,done())
     })
 
     it("test show product", (done)=>{
-        request.get('/products/1').expect(200,done)
+        request.get('/products/1').expect(200,done())
     })
 
     it("test create product", (done)=>{
         request.post('/products')
             .set('Authorization', 'Bearer ' + token)
             .send({name: "Test product", price: "300"})
-            .expect(200, done)
+            .expect(200, done())
     })
 
     

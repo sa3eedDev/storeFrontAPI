@@ -15,20 +15,20 @@ describe("Test order endpoints", ()=>{
     describe("test show order endpoint", ()=>{
 
         it("test without JWT", (done)=>{
-            request.get("/orders/1").expect(401, done)
+            request.get("/orders/1").expect(401, done())
 
         })
 
         it("Test show order with JWT", (done)=>{
             request.get("/orders/1")
             .set('Authorization', 'Bearer ' + token)
-            .expect(200, done)
+            .expect(200, done())
         })
     })
 
     describe("test create order endpoint", ()=>{
         it("test without sending a body", (done)=>{
-            request.post('/orders').expect(500, done)
+            request.post('/orders').expect(500, done())
         })
         it("test creating an Order", (done)=>{
             request.post('/orders')
@@ -46,7 +46,7 @@ describe("Test order endpoints", ()=>{
                     state_of_order: true,
                     user_id: 1
                     })
-                .expect(200, done)
+                .expect(200, done())
         })
     })
 
