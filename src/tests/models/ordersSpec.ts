@@ -50,18 +50,21 @@ describe("test order model functions", ()=>{
             user_id: 1,
             id: undefined
         }
+
+        const results = await orders.create(orderTest)
+        const order_id: string = (results.id as unknown) as string
         const orderExpect: order=  {
             products: [
                 {
-                    id: 1,
+                    id: results.products[0].id,
                     product_id: "1",
-                    order_id: "1",
+                    order_id: order_id.toString(), 
                     quantity: 3
                 },
                 {
-                    id: 2,
+                    id: results.products[1].id,
                     product_id: "1",
-                    order_id: "1",
+                    order_id: order_id.toString(),
                     quantity: 5
                 }
             ],
@@ -69,7 +72,6 @@ describe("test order model functions", ()=>{
             user_id: "1",
             id: 1
         }
-        const results = await orders.create(orderTest)
         expect(results).toEqual(orderExpect)
     })
 })
